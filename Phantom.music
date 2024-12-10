@@ -1,0 +1,40 @@
+package com.sena.Phantommusic.controllers;
+
+import com.sena.Phantommusic.model.entities.Usuario;
+import com.sena.Phantommusic.services.IUsuarioServicio;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/cancion")
+public class UsuarioController {
+    @Autowired
+    private IcancionServicio usuarioServicio;
+
+    @GetMapping("/listar-cancion")
+    public List<cancion> listarcancion() {
+        return usuarioServicio.findAll();
+    }
+
+    @GetMapping("/{idUCancion}")
+    public Usuario obtenerCancion(@PathVariable int idcancion) {
+        return usuarioServicio.findById(idcancion).get();
+    }
+
+    @PostMapping("/crear-cancion")
+    public Usuario crearUSuario(@RequestBody cancion cancion) {
+        return usuarioServicio.create(cancion);
+    }
+
+    @PutMapping("/editar-cancion/{idcancion}")
+    public void editarUsuario(@RequestBody Usuario usuario, @PathVariable int idUsuario) {
+        cancionServicio.update(cancion, idcancion);
+    }
+
+    @DeleteMapping("/eliminar-usuario")
+    public void eliminarUsuario(@PathVariable int idUsuaurio) {
+       cancionServicio.delete(idcancion);
+    }
+}
